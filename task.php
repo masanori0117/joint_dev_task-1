@@ -102,6 +102,14 @@ print("#####q9#####".PHP_EOL);
 $names = ["田中", "佐藤", "佐々木", "高橋"];
 
   # 以下に回答を記載
+  $count = 1;
+  foreach ($names as $name) {
+    $name_id[] = '会員No.' . $count .' '. $name;  
+    $count = $count +1 ;
+  }  
+
+  //var_dump($name_id);
+  print_r($name_id);
 
 echo PHP_EOL;
 
@@ -109,6 +117,19 @@ print("#####q10#####".PHP_EOL);
 $foods = ["いか","たこ","うに","しゃけ","うにぎり","うに軍艦","うに丼"];
 
   # 以下に回答を記載
+  $str = implode(',' , $foods);
+  
+  if (preg_match('/うに/', $str) === 1) {
+
+    $msg = '好物です';
+    
+  } else {
+    
+    $msg = 'まあまあ好きです';
+    
+  }
+  
+  echo $msg;
 
 echo PHP_EOL;
 
@@ -116,6 +137,32 @@ print("#####q11#####".PHP_EOL);
 $sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]];
 
   # 以下に回答を記載
+  function array_flatten($array){
+	$result = array();
+		foreach($array as $val){
+			if(is_array($val)){
+				$result = array_merge($result, array_flatten($val));
+			}else{
+				$result[]=$val;
+			}
+		}
+	  return $result;
+  }
+  
+  $array[] = array_flatten($sports);
+  
+  echo 'ユーザーの趣味一覧';
+  echo PHP_EOL;
+  
+  $id = 1;
+  foreach ($array as $value) {
+    foreach ($value as $values) {
+      
+      echo 'No' . $id . ' ' . $values .PHP_EOL;
+      $id++;
+      
+    }
+  }
 
 echo PHP_EOL;
 
@@ -123,6 +170,7 @@ print("#####q12#####".PHP_EOL);
 $data = [ "user" => [ "name" => "satou", "age" => 33 ] ];
 
   # 以下に回答を記載
+  print_r($data['user']['name']);
 
 echo PHP_EOL;
 
@@ -131,6 +179,8 @@ $user_data = [ "name" => "神里", "age" => 31, "address" => "埼玉"];
 $update_data = [ "age" => 32, "address" => "沖縄" ];
 
   # 以下に回答を記載
+  $user_data =array_merge($user_data, $update_data);
+  print_r($user_data);
 
 echo PHP_EOL;
 
@@ -138,6 +188,12 @@ print("#####q14#####".PHP_EOL);
 $data = [ "name" => "satou", "age" => 33, "address" => "saitama", "hobby" => "soccer", "email" => "hoge@fuga.com" ];
 
   # 以下に回答を記載
+  foreach ($data as $value) {
+
+    $array[] = $value;
+  }
+  
+  print_r($array);
 
 echo PHP_EOL;
 
@@ -146,6 +202,25 @@ $data1 = [ "name" => "saitou", "hobby" => "soccer", "age" => 33, "role" => "admi
 $data2 = [ "name" => "yamada", "hobby" => "baseball", "role" => "normal" ];
 
   # 以下に回答を記載
+  if (array_key_exists('age', $data1)) {
+  
+  echo "OK".PHP_EOL;
+  
+  } else {
+  
+  echo "NG".PHP_EOL;
+  
+  }
+
+  if (array_key_exists('age', $data2)) {
+ 
+    echo "OK".PHP_EOL;
+
+  }  else {
+  
+    echo "NG".PHP_EOL;
+  
+  }
 
 echo PHP_EOL;
 
@@ -158,6 +233,13 @@ $users = [
 ];
 
   # 以下に回答を記載
+  foreach ( $users as $user) {
+    
+    for($i=0; $i < count($user['name']); $i++) {
+      $msg = '私の名前は' . $user['name'] . 'です。年齢は' . $user['age'] . '歳です';
+      echo $msg.PHP_EOL;
+    }
+  }
 
 echo PHP_EOL;
 
