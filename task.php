@@ -329,17 +329,29 @@ print($book->name.PHP_EOL);
 echo PHP_EOL;
 
 print("#####q20#####".PHP_EOL);
+
 class Human
 {
 
   # コードを追加
-  public $name;
-  public $age;
+  private $name;
+  private $age;
   
   public function __construct($name, $age) {
     $this->name = $name;
     $this->age = $age;
   }
+  
+  public function getName() {
+    
+    return $this->name;
+  }
+  
+  public function getAge() {
+    
+    return $this->age;
+  }
+  
 }
 
 class Zoo
@@ -357,17 +369,18 @@ class Zoo
   
   public function info_entry_fee($human) {
     
-    if ($human->age >= 0 && $human->age <= 5) {
-      echo $human->name . 'の入場料金は' . $this->prices['infant'] . '円です。'.PHP_EOL;
-    } elseif ($human->age >= 6 && $human->age <= 12) {
-      echo $human->name . 'の入場料金は' . $this->prices['children'] . '円です。' .PHP_EOL;
-    } elseif ($human->age >= 13 && $human->age <= 64) {
-      echo $human->name . 'の入場料金は' . $this->prices['adult'] . '円です。' .PHP_EOL;
-    } elseif ($human->age >= 65 && $human->age <= 120) {
-      echo $human->name . 'の入場料金は' . $this->prices['senior'] . '円です。' .PHP_EOL;
+    if ($human->getAge() >= 0 && $human->getAge() <= 5) {
+      echo $human->getName() . 'の入場料金は' . $this->prices['infant'] . '円です。'.PHP_EOL;
+    } elseif ($human->getAge() >= 6 && $human->getAge() <= 12) {
+      echo $human->getName() . 'の入場料金は' . $this->prices['children'] . '円です。' .PHP_EOL;
+    } elseif ($human->getAge() >= 13 && $human->getAge() <= 64) {
+      echo $human->getName() . 'の入場料金は' . $this->prices['adult'] . '円です。' .PHP_EOL;
+    } elseif ($human->getAge() >= 65 && $human->getAge() <= 120) {
+      echo $human->getName() . 'の入場料金は' . $this->prices['senior'] . '円です。' .PHP_EOL;
     }
   }
 }
+
 
 $zoo = new Zoo("旭山動物園",[ "infant" => 0, "children" => 400, "adult" => 800, "senior" => 500]);
 
